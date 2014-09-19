@@ -13,7 +13,6 @@
 	}
 	</style>
 
-    <script type="text/javascript" charset="utf-8" src="cordova-1.8.1.js"></script>
     <script type="text/javascript" charset="utf-8">
 
     // Wait for Cordova to load
@@ -21,25 +20,33 @@
     document.addEventListener("deviceready", onDeviceReady, false);
 
     var watchID = null;
+	var myloop = null;
 
     // Cordova is ready
     //
     function onDeviceReady() {
 		
-		alert('READY');
-		
-        // Throw an error if no update is received every 30 seconds
-        var options = { timeout: 30000 };
-        watchID = navigator.geolocation.watchPosition(onSuccess, onError, options);
+		myloop = setInterval(function(){myTimer()},1000);
     }
 
     // onSuccess Geolocation
-    // 
+    //
+    function myTimer() {
+    	navigator.geolocation.getCurrentPosition(onSuccess, onError);
+    }
+
+    // onSuccess Geolocation
+    //
     function onSuccess(position) {
         var element = document.getElementById('geolocation');
-        element.innerHTML = 'Latitude: '  + position.coords.latitude      + '<br />' +
-                            'Longitude: ' + position.coords.longitude     + '<br />' +
-                            '<hr />'      + element.innerHTML;
+        element.innerHTML = 'Latitude: '           + position.coords.latitude              + '<br />' +
+                            'Longitude: '          + position.coords.longitude             + '<br />' +
+                            'Altitude: '           + position.coords.altitude              + '<br />' +
+                            'Accuracy: '           + position.coords.accuracy              + '<br />' +
+                            'Altitude Accuracy: '  + position.coords.altitudeAccuracy      + '<br />' +
+                            'Heading: '            + position.coords.heading               + '<br />' +
+                            'Speed: '              + position.coords.speed                 + '<br />' +
+                            'Timestamp: '          +                                   position.timestamp          + '<br />';
     }
 
     // onError Callback receives a PositionError object
@@ -51,7 +58,7 @@
 
     </script>
   </head>
-  <body>
+  <body onLoad="onDeviceReady()">
     <p id="geolocation">Watching geolocation...</p>
   </body>
 </html>
