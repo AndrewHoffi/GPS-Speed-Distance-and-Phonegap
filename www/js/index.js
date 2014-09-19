@@ -95,11 +95,15 @@ var app = {
 			
 			distance = parseInt(getDistance(currentLocation, destinationLocation));
 			
+			content = "";
+			
 			if( distance > 50 ){
 				$('#circle .content').removeClass('red');
 				$('#circle .content').removeClass('amber');
 				$('#circle .content').removeClass('green');
 				$('#circle .content').addClass('yellow');
+				
+				content = "Too Far";
 			}
 
 			if( distance < 50 ){
@@ -107,6 +111,8 @@ var app = {
 				$('#circle .content').removeClass('amber');
 				$('#circle .content').removeClass('green');
 				$('#circle .content').removeClass('yellow');
+				
+				content = "RED";
 			}
 			
 			if( distance < 30 ){
@@ -114,6 +120,8 @@ var app = {
 				$('#circle .content').addClass('amber');
 				$('#circle .content').removeClass('green');
 				$('#circle .content').removeClass('yellow');
+				
+				content = "AMBER";
 			}
 						
 			if( distance < 15 ){
@@ -121,10 +129,13 @@ var app = {
 				$('#circle .content').removeClass('amber');
 				$('#circle .content').addClass('green');
 				$('#circle .content').removeClass('yellow');
+
+				content = "GREEN";				
+
 			}						
 
 			
-			$('#circle .content').html(distance);
+			$('#circle .content').html(content + ' ' + distance);
 			$('#geolocation').html('lat:' + myLat + ' long:' + myLong);
 			
 		}, function(error) {
