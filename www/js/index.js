@@ -99,24 +99,28 @@ var app = {
 				$('#circle .content').removeClass('red');
 				$('#circle .content').removeClass('amber');
 				$('#circle .content').removeClass('green');
+				$('#circle .content').addClass('yellow');
 			}
 
 			if( distance < 50 ){
 				$('#circle .content').addClass('red');
 				$('#circle .content').removeClass('amber');
 				$('#circle .content').removeClass('green');
+				$('#circle .content').removeClass('yellow');
 			}
 			
 			if( distance < 30 ){
 				$('#circle .content').removeClass('red');
 				$('#circle .content').addClass('amber');
 				$('#circle .content').removeClass('green');
+				$('#circle .content').removeClass('yellow');
 			}
 						
 			if( distance < 15 ){
 				$('#circle .content').removeClass('red');
 				$('#circle .content').removeClass('amber');
 				$('#circle .content').addClass('green');
+				$('#circle .content').removeClass('yellow');
 			}						
 
 			
