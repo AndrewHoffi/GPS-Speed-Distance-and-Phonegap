@@ -25,13 +25,16 @@
     // Cordova is ready
     //
     function onDeviceReady() {
+		
+		alert('READY');
+		
         // Throw an error if no update is received every 30 seconds
         var options = { timeout: 30000 };
         watchID = navigator.geolocation.watchPosition(onSuccess, onError, options);
     }
 
     // onSuccess Geolocation
-    //
+    // 
     function onSuccess(position) {
         var element = document.getElementById('geolocation');
         element.innerHTML = 'Latitude: '  + position.coords.latitude      + '<br />' +
