@@ -93,9 +93,34 @@ var app = {
 			//SET CURRENT LOCATION ARRAY
 			currentLocation = Array(myLat, myLong);
 			
-			distance = getDistance(currentLocation, destinationLocation);
+			distance = parseInt(getDistance(currentLocation, destinationLocation));
 			
-			$('#circle').html(distance);
+			if( distance > 50 ){
+				$('#circle .content').removeClass('red');
+				$('#circle .content').removeClass('amber');
+				$('#circle .content').removeClass('green');
+			}
+
+			if( distance < 50 ){
+				$('#circle .content').addClass('red');
+				$('#circle .content').removeClass('amber');
+				$('#circle .content').removeClass('green');
+			}
+			
+			if( distance < 30 ){
+				$('#circle .content').removeClass('red');
+				$('#circle .content').addClass('amber');
+				$('#circle .content').removeClass('green');
+			}
+						
+			if( distance < 15 ){
+				$('#circle .content').removeClass('red');
+				$('#circle .content').removeClass('amber');
+				$('#circle .content').addClass('green');
+			}						
+
+			
+			$('#circle .content').html(distance);
 			$('#geolocation').html('lat:' + myLat + ' long:' + myLong);
 			
 		}, function(error) {
