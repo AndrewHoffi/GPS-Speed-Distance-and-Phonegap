@@ -91,12 +91,12 @@ var app = {
 			var myLong = (pos.coords.longitude).toFixed(6);
 			
 			//SET CURRENT LOCATION ARRAY
-			currentLocation = Array(myLat, myLat);
+			currentLocation = Array(myLat, myLong);
 			
 			distance = getDistance(currentLocation, destinationLocation);
 			
 			$('#circle').html(distance);
-			$('#geolocation').html('lat:' + myLat + ' long:' + myLat);
+			$('#geolocation').html('lat:' + myLat + ' long:' + myLong);
 			
 		}, function(error) {
 			// ...
